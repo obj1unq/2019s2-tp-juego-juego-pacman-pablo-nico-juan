@@ -2,14 +2,14 @@
 
 ![capturaJuego](assets/capturaJuego.png)
 
-#### Grupo: Nombre del Grupo
+#### Grupo: PacManVideoGame
 
 Integrantes:
 
-- Juana Azurduy
-- Alicia Moreau
-- Joe Balachi
-- Benedict Arnold
+- 
+- 
+- Sanchez Juan Cruz
+
 
 #### Descripción e instrucciones
 

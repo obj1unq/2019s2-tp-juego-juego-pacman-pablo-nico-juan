@@ -1,5 +1,33 @@
 import wollok.game.*
+import objetospersonajes.*
+import config.*
 
-program nombreDeSuJuego {
+program pacman {
+	
+	//Limites Del Juego
+	game.width(50)
+	game.height(23)
+	
+	// fondo
+	game.boardGround("fondopacman.jpg")
+	
+	// Personaje principal-pacman
+	
+	game.addVisualCharacter(pacman)
+	
+	//Fantasmas
+	const fantasmas = [new Fantasma(numero =1,posicionx=10,posiciony=20), new Fantasma(numero =2,posicionx=20,posiciony=5)]
+	
+	fantasmas.forEach { rival => 
+		game.addVisual(rival)
+		game.whenCollideDo(rival, { personaje =>
+			personaje.perderVida()
+			if (personaje.perderJuego()) {
+				game.stop()
+			}
+		})
+	}
+	
+	//Arranca el juego
 	game.start()
 }

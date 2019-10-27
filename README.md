@@ -26,6 +26,7 @@ Solo cuando Pacman coma la pastilla, y los fantasmas se pongan azules, se los po
 ## Etapas
 
 1-Lograr los movimientos del Pacman
+
 2-Personalizar movimientos de los fantasmas 
  
 

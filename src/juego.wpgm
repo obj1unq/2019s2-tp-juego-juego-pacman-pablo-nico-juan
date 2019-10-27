@@ -5,8 +5,8 @@ import config.*
 program pacman {
 	
 	//Limites Del Juego
-	game.width(50)
-	game.height(23)
+	game.width(25)
+	game.height(12)
 	
 	// fondo
 	game.boardGround("fondopacman.jpg")

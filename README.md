@@ -7,7 +7,7 @@
 Integrantes:
 
 - 
-- 
+- Bernasconi Pablo
 - Sanchez Juan Cruz
 
 

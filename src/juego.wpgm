@@ -4,30 +4,7 @@ import config.*
 
 program pacman {
 	
-	//Limites Del Juego
-	game.width(25)
-	game.height(12)
+	nivel1.iniciar()
 	
-	// fondo
-	game.boardGround("fondopacman.jpg")
 	
-	// Personaje principal-pacman
-	
-	game.addVisualCharacter(pacman)
-	
-	//Fantasmas
-	const fantasmas = [new Fantasma(numero =1,posicionx=10,posiciony=20), new Fantasma(numero =2,posicionx=20,posiciony=5)]
-	
-	fantasmas.forEach { rival => 
-		game.addVisual(rival)
-		game.whenCollideDo(rival, { personaje =>
-			personaje.perderVida()
-			if (personaje.perderJuego()) {
-				game.stop()
-			}
-		})
-	}
-	
-	//Arranca el juego
-	game.start()
 }

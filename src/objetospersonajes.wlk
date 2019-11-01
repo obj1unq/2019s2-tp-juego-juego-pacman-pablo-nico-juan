@@ -2,7 +2,7 @@ import  wollok.game.*
 import config.*
 
 object pacman {
-	var property image = "pacman.jpg"
+	var property image = "pacman.png"
 	var property position = game.origin()
 	var vidas = 2
 	
@@ -21,7 +21,7 @@ class Fantasma {
 	const posicionx
 	const posiciony
 	
-	method image() = "fantasma" + numero.toString() + ".jpg"
+	method image() = "fantasma" + numero.toString() + ".png"
 
 	method position() = game.at(posicionx, posiciony)
 }

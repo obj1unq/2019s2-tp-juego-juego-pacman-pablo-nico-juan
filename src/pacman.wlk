@@ -44,13 +44,16 @@ object pacman inherits Posicion(position=game.at(7,0)) {
 	
 	method image(){
 		
-		if(vidas>0)game.sound("pacman-waka.mp3")
+		if(vidas>0)self.sonido()
 		return "pacman.png"
 	}
 	
 	method actualizarEstado(){estado=pacmanNormal}
 		
-	
+	method sonido(){
+		if(self.estaEnModoTurbo())game.sound("pacman-fantasmas.mp3")
+		else game.sound("pacman-waka.mp3")
+	}
 	
 	method restarVida(){vidas= vidas -1}
 	

@@ -44,9 +44,10 @@ object pacman inherits Posicion(position=game.at(7,0)) {
 	
 	method image(){
 		
-		if(vidas>0)self.sonido()
+		if(vidas>0) self.sonido()
 		return "pacman.png"
 	}
+	
 	
 	method actualizarEstado(){estado=pacmanNormal}
 		
@@ -81,5 +82,6 @@ object pacman inherits Posicion(position=game.at(7,0)) {
 	}
 	
 	method estaEnModoTurbo()= estado==pacmanTurbo
+	
 	
 }

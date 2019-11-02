@@ -37,8 +37,10 @@ object nivel1 {
 			
 			game.addVisual(fruta)
 			game.whenCollideDo(pacman, {algo => pacman.chocarCon(algo)})
+			
 		}
 		
+			
 		//Arranca el juego
 		
 		game.start()

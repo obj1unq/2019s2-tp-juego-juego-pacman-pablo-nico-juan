@@ -1,10 +1,28 @@
 import wollok.game.*
-import objetospersonajes.*
-import config.*
+import fantasma.*
+import niveles.*
+import pacman.*
 
 program pacman {
+	//CONFIGURACION
+	game.title("Pacman!")
 	
+	//Limites Del Juego
+	game.width(15)
+	game.height(17)
+	
+	// Fondo
+	game.boardGround("fondopacman.jpg")
+	
+	// Personaje principal-pacman
+	
+	game.addVisualCharacter(pacman)
+	
+	// Iniciar Nivel
 	nivel1.iniciar()
 	
 	
 }
+
+
+

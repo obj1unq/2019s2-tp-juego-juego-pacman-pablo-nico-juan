@@ -12,14 +12,15 @@ object nivel1 {
 	
 	
 	//Fantasmas
-		const fantasmas = [new Fantasma(numero=1,position=game.at(10, 10)),
-						   new Fantasma(numero=2,position=game.at(5, 14)),
-						   new Fantasma(numero=3,position=game.at(12, 6))
+		const fantasmas = [new Fantasma(numero=1,position=game.at(14, 13)),
+						   new Fantasma(numero=2,position=game.at(0, 16)),
+						   new Fantasma(numero=3,position=game.at(8, 9))
 						]
 	//Frutas
 		
 		const frutas =[new Fruta(position=game.at(4,4)),
-					  new Fruta(position=game.at(7,10))
+					  new Fruta(position=game.at(2,12)),
+					  new Fruta(position=game.at(12,13))
 		]	
 		
 	

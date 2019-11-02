@@ -9,6 +9,7 @@ class Fantasma inherits Posicion{
 	
 	const numero
 	
+	
 	method image() = if(pacman.estaEnModoTurbo()){"fantasmaazul.png"}
 					 else {"fantasma" + numero.toString() + ".png"}
 	
@@ -18,7 +19,8 @@ class Fantasma inherits Posicion{
 		
 		newX = newX.max(0).min(game.width() - 1)
 		newY = newY.max(0).min(game.height() - 1)
-		if(pacman.vidas()>0) position = game.at(newX,newY)
+		if(pacman.vidas() >0 ) position = game.at(newX,newY)
+		
 					
 		
 		

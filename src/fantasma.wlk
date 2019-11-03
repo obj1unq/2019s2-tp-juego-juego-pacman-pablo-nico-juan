@@ -14,12 +14,13 @@ class Fantasma{
 	method meEncontro(pacman){
 		if(pacman.modoTurbo()){
 			game.removeVisual(self)
+			pacman.sumarPuntos(puntaje)
 		}
 		else{
 		game.say(pacman, "Perdi")
 		config.finDelJuego()		
 		}
-	
+	}
 }
 
 class Azul inherits Fantasma{
@@ -31,10 +32,13 @@ class Azul inherits Fantasma{
 		
 	newX = newX.max(0).min(game.width() - 1)
 	newY = newY.max(0).min(game.height() - 1)
+	
 	if(pacman.vidas()>0) position = game.at(newX, newY)
-		
+		newX = newX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
 	}
 }
+
 class Rojo inherits Fantasma{
 		
 	method moverse(){
@@ -59,6 +63,3 @@ class Verde inherits Fantasma{
 		
 	}
 }
-	
-
-

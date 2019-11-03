@@ -52,9 +52,12 @@ object pacman{
 	method perderJuego() = vidas == 0
 	method image(){
 		if(vidas>0)
-		self.sonido()
+		self.sonido()		
+		if(vidas>0) self.sonido()
 		return "pacman.png"
 	}
+//	method actualizarEstado(){estado=pacmanNormal}
+		
 	method sonido(){
 		if(modoTurbo) game.sound("pacman-fantasmas.mp3")
 		else game.sound("pacman-waka.mp3")
@@ -78,4 +81,15 @@ object pacman{
 		game.schedule(3000, {self.actualizarEstado()})
 		game.colliders(visual)
 	}
-*/}
+}
+	method perderJuego() = vidas == 0
+	
+	method resetiarPosicion(){
+		position= game.at(7,0)
+	}
+	
+	method estaEnModoTurbo()= estado==pacmanTurbo
+	
+	
+}
+*/

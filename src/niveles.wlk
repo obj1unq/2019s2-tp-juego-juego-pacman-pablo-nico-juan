@@ -11,7 +11,17 @@ object nivel1 {
 		const rojo = new Rojo(numero=2,position=game.at(5, 14))
 		const verde = new Verde(numero=3,position=game.at(12, 6))
 		var fantasmas = [azul,rojo,verde]
-	
+		/*const fantasmas = [new Fantasma(numero=1,position=game.at(14, 13)),
+						   new Fantasma(numero=2,position=game.at(0, 16)),
+						   new Fantasma(numero=3,position=game.at(8, 9))
+						]*/
+	//Frutas
+		
+/*		const frutas =[new Fruta(position=game.at(4,4)),
+					  new Fruta(position=game.at(2,12)),
+					  new Fruta(position=game.at(12,13))
+		]*/	
+		
 	//Frutas
 		const fruta1 = new Fruta(position=game.at(4,4))
 		const fruta2 = new Fruta(position=game.at(9,10))
@@ -33,7 +43,13 @@ object nivel1 {
 		frutas.forEach({fruta => game.addVisual(fruta)})
 		game.whenCollideDo(pacman, {fruta => fruta.meComioPacman()})
 		
-		
+		frutas.forEach{fruta => 
+			
+			game.addVisual(fruta)
+			game.whenCollideDo(pacman, {algo => algo.meEncontro(pacman)})
+			
+		}
+			
 		//Arranca el juego
 		
 		game.start()

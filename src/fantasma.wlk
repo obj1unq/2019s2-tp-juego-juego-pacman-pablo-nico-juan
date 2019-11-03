@@ -17,9 +17,12 @@ class Fantasma{
 			pacman.sumarPuntos(puntaje)
 		}
 		else{
-		game.say(pacman, "Perdi")
-		config.finDelJuego()		
+		pacman.comidoPorFantasma()
+		//config.finDelJuego()		
 		}
+	}
+	method meComioPacman(){
+		
 	}
 }
 

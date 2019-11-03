@@ -45,7 +45,7 @@ object pacman{
 		if(self.perderJuego()){
 			game.say(self,"GAME OVER" + puntos)
 			game.sound("pacman-die.mp3")
-			game.schedule(3500, {game.stop()})
+			game.schedule(4000, {game.stop()})
 		}
 	}
 	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
@@ -63,7 +63,7 @@ object pacman{
 		else game.sound("pacman-waka.mp3")
 	}
 	method sumarPuntos(cantidad){puntos+=cantidad}
-	
+}
 /*
 	method chocarCon(algo) {
 		algo.choqueConPacman(self)
@@ -91,5 +91,5 @@ object pacman{
 	method estaEnModoTurbo()= estado==pacmanTurbo
 	
 	
-}
-*/
+}*/
+

@@ -17,7 +17,7 @@ class Fruta {
 		game.removeVisual(self)
 		game.sound("pacman-comercereza.mp3")
 		game.schedule(3000, {pacman.salirDeTurbo()})
-		game.colliders(self)
+		//game.colliders(self)
 		
 	}
 }

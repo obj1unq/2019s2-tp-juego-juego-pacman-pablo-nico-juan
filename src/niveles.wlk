@@ -43,9 +43,9 @@ object nivel1 {
 		frutas.forEach({fruta => game.addVisual(fruta)})
 		game.whenCollideDo(pacman, {fruta => fruta.meComioPacman()})
 		
-		frutas.forEach{fruta => 
+		frutas.forEach{frutas=> 
 			
-			game.addVisual(fruta)
+			
 			game.whenCollideDo(pacman, {algo => algo.meEncontro(pacman)})
 			
 		}

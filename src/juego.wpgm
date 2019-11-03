@@ -2,14 +2,15 @@ import wollok.game.*
 import fantasma.*
 import niveles.*
 import pacman.*
+import complementos.*
 
 program pacman {
 	//CONFIGURACION
 	game.title("Pacman!")
 	
 	//Limites Del Juego
-	game.width(15)
-	game.height(17)
+	game.width(20)
+	game.height(14)
 	
 	// Fondo
 	game.boardGround("fondopacman.jpg")

@@ -1,4 +1,4 @@
-import  wollok.game.*
+import wollok.game.*
 import niveles.*
 import pacman.*
 import fantasma.*
@@ -6,26 +6,30 @@ import fantasma.*
 
 //CLASE FRUTA
 class Fruta {
-	var property position 
-	const property puntaje = 500
+	method puntaje() = 500
 	
+	method position(){
+		const posX = 0.randomUpTo(game.width()).truncate(0)
+		const posY = 0.randomUpTo(game.width()).truncate(0)
+		return game.at(posX,posY)
+	}
 	method image() = "fruta.png"
 	
-	method meComioPacman(){
-		pacman.sumarPuntos(puntaje)
+	method serComido(){
+		pacman.sumarPuntos(self.puntaje())
 		pacman.pasarAturbo()
-		game.removeVisual(self)
-		game.sound("pacman-comercereza.mp3")
-		game.schedule(3000, {pacman.salirDeTurbo()})
-		game.colliders(self)
+	//	game.removeVisual(self)
+	//	game.sound("pacman-comercereza.mp3")
+	//	game.schedule(3000, {pacman.salirDeTurbo()})
+	//	game.colliders(self)
 		
 	}
 }
 
-class Pastilla{
-	var property position
-	const property puntaje = 1000
+class Pastilla inherits Fruta{
 	
-	method image() = ""
+	override method puntaje() = 1000
+	
+	override method image() = ""
 	
 }

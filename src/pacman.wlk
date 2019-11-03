@@ -29,16 +29,21 @@ object pacmanTurbo{
 
 //OBJETO PACMAN
 object pacman{
-	var property position = self.posicionOriginal()
-	var property vidas = 3
+	var property position = game.origin()
+	var property cantVidas = 3
 	var property modoTurbo = false 
-	var property puntos = 0
+	var puntosTotales = 0
 	
-	method posicionOriginal()=game.at(7,10)
+//	method posicionOriginal()=game.at(7,10)
 	method pasarAturbo(){modoTurbo = true} //Cuando esta en turbo se puede comer los fantasmas, cambia a turbo cuando se come la pastilla
 	method salirDeTurbo(){modoTurbo = false}
-	method restarVida(){vidas -= 1}
-	method comidoPorFantasma(){
+	method restarVida(){cantVidas -= 1}
+	method comer(comida){
+		comida.serComido()
+	//	game.removeVisual(comida)
+	}
+
+	/*method comidoPorFantasma(){
 		self.restarVida()
 		if(vidas>0) game.say(self,"Perdiste 1 vida")
 		self.resetPosicion()
@@ -47,22 +52,24 @@ object pacman{
 			game.sound("pacman-die.mp3")
 			game.schedule(3500, {game.stop()})
 		}
-	}
-	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
-	method perderJuego() = vidas == 0
-	method image(){
+	}*/
+//	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
+	method image() = "pacman.png"
+	
+	/*method image(){
 		if(vidas>0)
 		self.sonido()		
 		if(vidas>0) self.sonido()
 		return "pacman.png"
-	}
+	}*/
 //	method actualizarEstado(){estado=pacmanNormal}
 		
 	method sonido(){
 		if(modoTurbo) game.sound("pacman-fantasmas.mp3")
 		else game.sound("pacman-waka.mp3")
 	}
-	method sumarPuntos(cantidad){puntos+=cantidad}
+	method sumarPuntos(cantidad){ puntosTotales += cantidad }
+	method puntosTotales() = puntosTotales
 	
 /*
 	method chocarCon(algo) {
@@ -93,3 +100,4 @@ object pacman{
 	
 }
 */
+}

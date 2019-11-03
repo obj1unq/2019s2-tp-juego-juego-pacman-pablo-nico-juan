@@ -11,20 +11,25 @@ class Fantasma{
 	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
 					 else {"fantasma" + numero.toString() + ".png"}
 		
-	method meEncontro(pacman){
-		if(pacman.modoTurbo()){
-			game.removeVisual(self)
-			pacman.sumarPuntos(puntaje)
+	method serComido(){
+		if(!pacman.modoTurbo()){
+			self.comer(pacman)
+			//game.removeVisual(self)
+			//pacman.sumarPuntos(puntaje)
 		}
 		else{
-		game.say(pacman, "Perdi")
-		config.finDelJuego()		
+			pacman.sumarPuntos(puntaje)
+	//	game.say(pacman, "Perdi")
+	//	config.finDelJuego()		
 		}
+	}
+	method comer(pacman){
+		pacman.restarVida()
 	}
 }
 
 class Azul inherits Fantasma{
-	
+		//pensar un movimiento para este fantasma
 		
 	method moverse(){
 	var newX = position.x() -1
@@ -33,33 +38,33 @@ class Azul inherits Fantasma{
 	newX = newX.max(0).min(game.width() - 1)
 	newY = newY.max(0).min(game.height() - 1)
 	
-	if(pacman.vidas()>0) position = game.at(newX, newY)
+	if(pacman.cantVidas()>0) position = game.at(newX, newY)
 		newX = newX.max(0).min(game.width() - 1)
 		newY = newY.max(0).min(game.height() - 1)
 	}
 }
 
 class Rojo inherits Fantasma{
-		
+		//hacer seguir a pacman
 	method moverse(){
 	var newX = position.x() -1
 	var newY = position.y() -1
 		
 	newX = newX.max(0).min(game.width() - 1)
 	newY = newY.max(0).min(game.height() - 1)
-	if(pacman.vidas()>0) position = game.at(newX, newY)
+	if(pacman.cantVidas()>0) position = game.at(newX, newY)
 		
 	}
 }
 class Verde inherits Fantasma{
-
+		// mov random por el tablero
 	method moverse(){
 	 var newX = position.x() -1
 	 var newY = position.y() -1
 		
 	newX = newX.max(0).min(game.width() - 1)
 	newY = newY.max(0).min(game.height() - 1)
-	if(pacman.vidas()>0) position = game.at(newX, newY)
+	if(pacman.cantVidas()>0) position = game.at(newX, newY)
 		
 	}
 }

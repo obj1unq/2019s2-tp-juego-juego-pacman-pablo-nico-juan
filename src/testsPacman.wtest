@@ -1,0 +1,27 @@
+import pacman.*
+import fantasma.*
+import complementos.*
+
+describe "pacman juego"{
+	//Listas de fantasmas y de frutas.
+	const fantasmas = new Azul(numero=1,position=pacman.position())
+	const frutas = new Fruta()
+	
+	test"pacman comer fruta"{
+		pacman.comer(frutas)
+		assert.equals(pacman.puntosTotales(), 500)
+	}
+	
+	test "pacman comer fantasma"{
+		pacman.pasarAturbo()
+		pacman.comer(fantasmas)
+		assert.equals(pacman.puntosTotales(),2000)
+	}
+	
+	test "pacman es comido por fantasma"{
+		pacman.salirDeTurbo()
+		pacman.comer(fantasmas)
+		assert.equals(pacman.cantVidas(), 2)
+	}
+	
+}

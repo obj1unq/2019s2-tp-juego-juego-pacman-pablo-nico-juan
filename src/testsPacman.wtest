@@ -14,7 +14,7 @@ describe "pacman juego"{
 	
 	test "pacman comer fantasma"{
 		pacman.pasarAturbo()
-		pacman.comer(fantasmas)
+		pacman.comer(fantasmas) 
 		assert.equals(pacman.puntosTotales(),2000)
 	}
 	

@@ -6,25 +6,36 @@ import fantasma.*
 
 //CLASE FRUTA
 class Fruta {
-	method puntaje() = 500
+	const comida
+	method puntaje() = comida.puntaje()
 	
 	method position(){
 		const posX = 0.randomUpTo(game.width()).truncate(0)
 		const posY = 0.randomUpTo(game.width()).truncate(0)
 		return game.at(posX,posY)
 	}
-	method image() = "fruta.png"
+	method image() = comida.image()
 	
 	method serComido(){
 		pacman.sumarPuntos(self.puntaje())
-		pacman.pasarAturbo()
+		comida.efectoEnPacman()
 	}
 }
 
-class Pastilla inherits Fruta{
+object frutilla {
 	
-	override method puntaje() = 1000
+	method puntaje() = 1000
 	
-	override method image() = ""
+	method image() = ""
 	
+	method efectoEnPacman() { pacman.pasarAturbo() }
+	
+}
+
+object cereza {
+	method puntaje() = 500
+	
+	method image() = ""
+	
+	method efectoEnPacman() { }
 }

@@ -4,12 +4,21 @@ import complementos.*
 
 describe "pacman juego"{
 	//Listas de fantasmas y de frutas.
-	const fantasmas = new Azul(numero=1,position=pacman.position())
-	const frutas = new Fruta()
+	const fantasmas = new Fantasma(tipo = azul)
+	const primeraFruta = new Fruta(comida = cereza)
+	const segundaFruta = new Fruta(comida = frutilla)
 	
-	test"pacman comer fruta"{
-		pacman.comer(frutas)
+	
+	test"pacman comer cereza"{
+		pacman.comer(primeraFruta)
 		assert.equals(pacman.puntosTotales(), 500)
+		assert.notThat(pacman.modoTurbo())
+	}
+	
+	test "pacman come frutilla"{
+		pacman.comer(segundaFruta)
+		assert.equals(pacman.puntosTotales(), 1000)
+		assert.that(pacman.modoTurbo())
 	}
 	
 	test "pacman comer fantasma"{

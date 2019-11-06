@@ -4,36 +4,66 @@ import pacman.*
 
 //CLASE FANTASMA
 class Fantasma{
-	const tipo
-	var property position  = game.center()
+	const numero
+	var property position
 	const puntaje = 2000
 	
 	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
-					 else {"fantasma" + tipo.nombre() + ".png"}
+					 else {"fantasma" + numero.toString() + ".png"}
 		
-	method serComido(){
-		if(!pacman.modoTurbo()){
-			self.comerPacman()
+	method meEncontro(pacman){
+		if(pacman.modoTurbo()){
+			game.removeVisual(self)
+			game.sound("pacman-comerfantasma.mp3")
+			pacman.sumarPuntos(puntaje)
 		}
 		else{
-			pacman.sumarPuntos(puntaje)		
+		pacman.comidoPorFantasma()
+		//config.finDelJuego()		
 		}
 	}
-	method comerPacman(){ pacman.restarVida() }
-	
+	method meComioPacman(){
+		
+	}
 }
 
-object azul{
-	//pensar un movimiento para este fantasma
-	const property nombre = 1
+class Azul inherits Fantasma{
 	
+		
+	method moverse(){
+	var newX = position.x() -1
+	var newY = position.y() -1
+		
+	newX = newX.max(0).min(game.width() - 1)
+	newY = newY.max(0).min(game.height() - 1)
+	
+	if(pacman.vidas()>0) position = game.at(newX, newY)
+		newX = newX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
+	}
 }
 
-object rojo {
-	//hacer seguir a pacman
-	const property nombre = 2
+class Rojo inherits Fantasma{
+		
+	method moverse(){
+	var newX = position.x() -1
+	var newY = position.y() -1
+		
+	newX = newX.max(0).min(game.width() - 1)
+	newY = newY.max(0).min(game.height() - 1)
+	if(pacman.vidas()>0) position = game.at(newX, newY)
+		
+	}
 }
-object verde {
-	// mov random por el tablero
-	const property nombre = 3
+class Verde inherits Fantasma{
+
+	method moverse(){
+	 var newX = position.x() -1
+	 var newY = position.y() -1
+		
+	newX = newX.max(0).min(game.width() - 1)
+	newY = newY.max(0).min(game.height() - 1)
+	if(pacman.vidas()>0) position = game.at(newX, newY)
+		
+	}
 }

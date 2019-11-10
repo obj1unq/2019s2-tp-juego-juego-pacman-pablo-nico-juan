@@ -36,7 +36,7 @@ object nivel1 {
 		//Configurar Colisiones
 		game.whenCollideDo(pacman, {fruta => fruta.meEncontro(pacman)})
 		game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
-		//game.whenCollideDo(fantasma, {fantasma => fantasma.meEncontro(fantasma)})
+		
 			
 		//Arranca el juego
 		

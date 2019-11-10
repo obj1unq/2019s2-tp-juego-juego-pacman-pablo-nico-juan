@@ -6,7 +6,9 @@ import pacman.*
 class Fantasma{
 	const numero
 	const puntaje = 2000
-	const property sosPacman = false
+	
+	
+	
 	
 	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
 					 else {"fantasma" + numero.toString() + ".png"}
@@ -16,6 +18,7 @@ class Fantasma{
 			game.sound("pacman-comerfantasma.mp3")
 			pacman.sumarPuntos(puntaje)
 			self.resetPosicion()
+			game.addVisual(self)
 		}
 		else{
 		pacman.comidoPorFantasma()
@@ -63,6 +66,22 @@ class Rojo inherits Fantasma{
 }
 class Verde inherits Fantasma{
 	
+	var property position = self.posicionOriginal()
+	method posicionOriginal() = game.at(17,3)
+	override method resetPosicion() {position = self.posicionOriginal()}
+	
+	method moverse(){
+	 var newX = position.x() -1
+	 var newY = position.y() -1
+		
+	newX = newX.max(0).min(game.width() - 1)
+	newY = newY.max(0).min(game.height() - 1)
+	if(pacman.vidas()>0) position = game.at(newX, newY)
+		
+	}
+	
+	}
+class Amarillo inherits Fantasma{
 	var property position = self.posicionOriginal()
 	method posicionOriginal() = game.at(17,3)
 	override method resetPosicion() {position = self.posicionOriginal()}

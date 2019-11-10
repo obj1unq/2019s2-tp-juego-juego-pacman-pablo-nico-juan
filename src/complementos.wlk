@@ -11,7 +11,7 @@ class Fruta {
 	
 	method image() = "fruta.png"
 	
-	method meComioPacman(){
+	method meEncontro(pacman){
 		pacman.sumarPuntos(puntaje)
 		pacman.pasarAturbo()
 		game.removeVisual(self)

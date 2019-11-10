@@ -6,6 +6,7 @@ import pacman.*
 class Fantasma{
 	const numero
 	const puntaje = 2000
+	const property sosPacman = false
 	
 	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
 					 else {"fantasma" + numero.toString() + ".png"}

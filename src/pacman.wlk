@@ -11,6 +11,7 @@ object pacman{
 	var property vidas = 3
 	var property modoTurbo = false 
 	var property puntos = 0
+	const property sosPacman = true
 	
 	method posicionOriginal()=game.at(10,7)
 	method pasarAturbo(){modoTurbo = true} //Cuando esta en turbo se puede comer los fantasmas, cambia a turbo cuando se come la pastilla
@@ -29,7 +30,8 @@ object pacman{
 	}
 	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
 	method perderJuego() = vidas == 0
-	method image()= "pacman.png"
+	method image(){ if(vidas>0) game.sound("pacman-waka.mp3")
+		return "pacman.png"}
 	method sonido(){
 		if(modoTurbo) game.sound("pacman-fantasmas.mp3")
 		else game.sound("pacman-waka.mp3")

@@ -55,4 +55,7 @@ object config{
 	method finDelJuego(){
 		game.onTick(2000,"Pacman Murio", {game.stop()})
 	}
+	method pasarNivel(){
+		
+	}
 }

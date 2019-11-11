@@ -13,16 +13,17 @@ object nivel1 {
 		var fantasmas = [azul,rojo,verde]
 		
 	//Frutas
-		const fruta1 = new Fruta(position=game.at(4,4))
-		const fruta2 = new Fruta(position=game.at(9,10))
-		const fruta3 = new Fruta(position=game.at(2,8))
-		const fruta4 = new Fruta(position=game.at(11,3))
-		const fruta5 = new Fruta(position=game.at(5,9))	
-		const frutas = [fruta1,fruta2,fruta3,fruta4,fruta5]
+		const fruta1 = new Fruta(position=game.at(1,4))
+		const fruta2 = new Fruta(position=game.at(3,12))
+		const fruta3 = new Fruta(position=game.at(20,14))
+		const fruta4 = new Fruta(position=game.at(11,10))
+		const fruta5 = new Fruta(position=game.at(18,9))
+		const fruta6 = new Fruta(position=game.at(19,1))	
+		const frutas = [fruta1,fruta2,fruta3,fruta4,fruta5,fruta6]
 	
 	//Pastillas
-		const pastilla1 = new Pastilla (position=game.at(10,10))
-		const pastilla2 = new Pastilla (position=game.at(1,1))
+		const pastilla1 = new Pastilla (position=game.at(15,13))
+		const pastilla2 = new Pastilla (position=game.at(0,1))
 		const pastillas=[pastilla1,pastilla2]
 	
 		// Configurar fantasmas = Movimiento 
@@ -40,7 +41,7 @@ object nivel1 {
 		game.whenCollideDo(pacman, {fruta => fruta.meEncontro(pacman)})
 		game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
 		game.whenCollideDo(pacman, {pastilla =>pastilla.meEncontro(pacman)})
-			
+		
 		//Arranca el juego
 		
 		game.start()

@@ -13,7 +13,7 @@ object pacman{
 	var property puntos = 0
 	
 	
-	method posicionOriginal()=game.at(10,7)
+	method posicionOriginal()=game.at(10,0)
 	method pasarAturbo(){modoTurbo = true} //Cuando esta en turbo se puede comer los fantasmas, cambia a turbo cuando se come la pastilla
 	method salirDeTurbo(){modoTurbo = false}
 	method restarVida(){vidas -= 1}

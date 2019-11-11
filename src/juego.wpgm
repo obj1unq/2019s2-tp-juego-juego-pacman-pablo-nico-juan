@@ -9,8 +9,8 @@ program pacman {
 	game.title("Pacman!")
 	
 	//Limites Del Juego
-	game.width(20)
-	game.height(14)
+	game.width(21)
+	game.height(15)
 	
 	// Fondo
 	game.boardGround("fondopacman.jpg")

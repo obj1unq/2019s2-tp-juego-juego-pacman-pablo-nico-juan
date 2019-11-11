@@ -36,7 +36,7 @@ class Rosa inherits Fantasma{
 	var property position = self.posicionOriginal()
 	
 	
-	method posicionOriginal() = game.at(17,11)
+	method posicionOriginal() = game.at(20,0)
 	
 	override method resetPosicion() {position = self.posicionOriginal()}	
 	
@@ -58,7 +58,7 @@ class Rojo inherits Fantasma{
 	var property position = self.posicionOriginal()
 	
 	
-	method posicionOriginal() = game.at(11,11)
+	method posicionOriginal() = game.at(15,11)
 	
 	override method resetPosicion() {position = self.posicionOriginal()}	
 	

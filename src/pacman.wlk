@@ -30,7 +30,7 @@ object pacman{
 	}
 	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
 	method perderJuego() = vidas == 0
-	method image(){ if(vidas>0) game.sound("pacman-waka.mp3")
+	method image(){ if(vidas>0) self.sonido()
 		return "pacman.png"}
 	method sonido(){
 		if(modoTurbo) game.sound("pacman-fantasmas.mp3")

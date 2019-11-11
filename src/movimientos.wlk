@@ -1,9 +1,0 @@
-object moversePorElMapa {
-	
-	
-}
-
-
-object seguirAlPacman{
-	
-}

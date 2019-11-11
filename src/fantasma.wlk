@@ -10,6 +10,7 @@ class Fantasma{
 	
 	
 	
+	
 	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
 					 else {"fantasma" + numero.toString() + ".png"}
 	method meEncontro(pacman){
@@ -29,70 +30,98 @@ class Fantasma{
 	method resetPosicion()
 }
 
-class Azul inherits Fantasma{
+//SE MUEVE POR EL TABLERO 
+class Rosa inherits Fantasma{
 	
 	var property position = self.posicionOriginal()
+	
+	
 	method posicionOriginal() = game.at(17,11)
+	
 	override method resetPosicion() {position = self.posicionOriginal()}	
 	
-	method moverse(){
-	var newX = self.position().x() -1
-	var newY = self.position().y() -1
-		
-	newX = newX.max(0).min(game.width() - 1)
-	newY = newY.max(0).min(game.height() - 1)
 	
-	//if(pacman.vidas()>0) self.position() = game.at(newX, newY)
+	method moverse(){
+		
+		var otroPosicion = pacman.position()
+		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
+		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		// evitamos que se posicionen fuera del tablero
 		newX = newX.max(0).min(game.width() - 1)
 		newY = newY.max(0).min(game.height() - 1)
+		position = game.at(newX, newY)
 	}
 }
-
+//SIGUE A PACMAN
 class Rojo inherits Fantasma{
 	
 	var property position = self.posicionOriginal()
-	method posicionOriginal() = game.at(3,3)
-	override method resetPosicion() {position = self.posicionOriginal()}
-		
+	
+	
+	method posicionOriginal() = game.at(11,11)
+	
+	override method resetPosicion() {position = self.posicionOriginal()}	
+	
+	
 	method moverse(){
-	var newX = position.x() -1
-	var newY = position.y() -1
 		
-	newX = newX.max(0).min(game.width() - 1)
-	newY = newY.max(0).min(game.height() - 1)
-	if(pacman.vidas()>0) position = game.at(newX, newY)
-		
+		var otroPosicion = pacman.position()
+		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
+		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		// evitamos que se posicionen fuera del tablero
+		newX = newX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
+		position = game.at(newX, newY)
 	}
+		
 }
+//OTRO MOVIMIENTO
 class Verde inherits Fantasma{
 	
 	var property position = self.posicionOriginal()
-	method posicionOriginal() = game.at(17,3)
-	override method resetPosicion() {position = self.posicionOriginal()}
+	
+	
+	method posicionOriginal() = game.at(5,5)
+	
+	override method resetPosicion() {position = self.posicionOriginal()}	
+	
 	
 	method moverse(){
-	 var newX = position.x() -1
-	 var newY = position.y() -1
 		
-	newX = newX.max(0).min(game.width() - 1)
-	newY = newY.max(0).min(game.height() - 1)
-	if(pacman.vidas()>0) position = game.at(newX, newY)
-		
+		var otroPosicion = pacman.position()
+		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
+		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		// evitamos que se posicionen fuera del tablero
+		newX = newX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
+		position = game.at(newX, newY)
 	}
 	
+	
+	
 	}
+	
+//OTRO MOVIMIENTO
 class Amarillo inherits Fantasma{
 	var property position = self.posicionOriginal()
-	method posicionOriginal() = game.at(17,3)
-	override method resetPosicion() {position = self.posicionOriginal()}
+	
+	
+	method posicionOriginal() = game.at(7,9)
+	
+	override method resetPosicion() {position = self.posicionOriginal()}	
+	
 	
 	method moverse(){
-	 var newX = position.x() -1
-	 var newY = position.y() -1
 		
-	newX = newX.max(0).min(game.width() - 1)
-	newY = newY.max(0).min(game.height() - 1)
-	if(pacman.vidas()>0) position = game.at(newX, newY)
-		
+		var otroPosicion = pacman.position()
+		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
+		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		// evitamos que se posicionen fuera del tablero
+		newX = newX.max(0).min(game.width() - 1)
+		newY = newY.max(0).min(game.height() - 1)
+		position = game.at(newX, newY)
 	}
 }
+
+
+

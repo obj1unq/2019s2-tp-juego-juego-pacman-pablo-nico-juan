@@ -13,12 +13,8 @@ class Fruta {
 	
 	method meEncontro(pacman){
 		pacman.sumarPuntos(puntaje)
-		pacman.pasarAturbo()
 		game.removeVisual(self)
 		game.sound("pacman-comercereza.mp3")
-		game.schedule(3000, {pacman.salirDeTurbo()})
-		
-		
 	}
 }
 //CLASE PASTILLA//
@@ -26,6 +22,14 @@ class Pastilla{
 	var property position
 	const property puntaje = 1000
 	
-	method image() = ""
+	method image() = "pastilla.png"
 	
+	method meEncontro(pacman){
+		pacman.sumarPuntos(puntaje)
+		pacman.pasarAturbo()
+		game.removeVisual(self)
+		game.schedule(3000, {pacman.salirDeTurbo()})
+		
+		
+	}
 }

@@ -19,7 +19,7 @@ class Fantasma{
 			game.sound("pacman-comerfantasma.mp3")
 			pacman.sumarPuntos(puntaje)
 			self.resetPosicion()
-			game.addVisual(self)
+			game.schedule(1500, {game.addVisual(self)})
 		}
 		else{
 		pacman.comidoPorFantasma()
@@ -43,14 +43,14 @@ class Rosa inherits Fantasma{
 	
 	method moverse(){
 		
-		var otroPosicion = pacman.position()
-		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
-		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
-		// evitamos que se posicionen fuera del tablero
-		newX = newX.max(0).min(game.width() - 1)
-		newY = newY.max(0).min(game.height() - 1)
-		position = game.at(newX, newY)
-	}
+				var newX = self.position().x() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newY = self.position().y() + if(0.randomUpTo(4)>=2){1}else{-1}
+				// evitamos que se posicionen fuera del tablero
+				newX = newX.max(0).min(game.width() - 1)
+				newY = newY.max(0).min(game.height() - 1)
+				position = game.at(newX, newY)
+		
+		}
 }
 //SIGUE A PACMAN
 class Rojo inherits Fantasma{
@@ -75,7 +75,7 @@ class Rojo inherits Fantasma{
 	}
 		
 }
-//OTRO MOVIMIENTO
+//OTRO MOVIMIENTO PERSIGUE A PACMAN CUANDO TIENE 1000 PUNTOS
 class Verde inherits Fantasma{
 	
 	var property position = self.posicionOriginal()
@@ -88,13 +88,23 @@ class Verde inherits Fantasma{
 	
 	method moverse(){
 		
-		var otroPosicion = pacman.position()
-		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
-		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
-		// evitamos que se posicionen fuera del tablero
-		newX = newX.max(0).min(game.width() - 1)
-		newY = newY.max(0).min(game.height() - 1)
-		position = game.at(newX, newY)
+		if(pacman.puntos()<1000){
+				var newX = self.position().x() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newY = self.position().y() + if(0.randomUpTo(4)>=2){1}else{-1}
+				// evitamos que se posicionen fuera del tablero
+				newX = newX.max(0).min(game.width() - 1)
+				newY = newY.max(0).min(game.height() - 1)
+				position = game.at(newX, newY)
+		}
+		else{
+			var otroPosicion = pacman.position()
+			var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
+			var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+			// evitamos que se posicionen fuera del tablero
+			newX = newX.max(0).min(game.width() - 1)
+			newY = newY.max(0).min(game.height() - 1)
+			position = game.at(newX, newY)
+		}
 	}
 	
 	

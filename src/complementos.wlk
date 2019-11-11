@@ -12,11 +12,11 @@ class Fruta {
 	method image() = "fruta.png"
 	
 	method meEncontro(pacman){
-		pacman.sumarPuntos(puntaje)
-		game.removeVisual(self)
-		game.sound("pacman-comercereza.mp3")
+			pacman.sumarPuntos(puntaje)
+			game.removeVisual(self)
+			game.sound("pacman-comercereza.mp3")}
 	}
-}
+
 //CLASE PASTILLA//
 class Pastilla{
 	var property position

@@ -11,7 +11,7 @@ object pacman{
 	var property vidas = 3
 	var property modoTurbo = false 
 	var property puntos = 0
-	
+	var property frutasComidas=0
 	
 	method posicionOriginal()=game.at(10,0)
 	method pasarAturbo(){modoTurbo = true} //Cuando esta en turbo se puede comer los fantasmas, cambia a turbo cuando se come la pastilla
@@ -37,4 +37,8 @@ object pacman{
 		else game.sound("pacman-waka.mp3")
 	}
 	method sumarPuntos(cantidad){puntos+=cantidad}
-}
+	
+	
+		
+	}
+

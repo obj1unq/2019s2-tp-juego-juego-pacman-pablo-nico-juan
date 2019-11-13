@@ -23,6 +23,7 @@ object nivel1 {
 		game.addVisual(new Comida(tipo = fruta))
 		game.whenCollideDo(pacman, {comida =>
 			comida.meEncontroPacman()
+			//Revisar el pasar al nivel ya que agrega mas fantasmas pero no se mueve.
 			if(pacman.puntos() == 5000) config.pasarAlNivel(siguienteNivel) 
 			contador+=1
 			if(contador % 3 == 0) game.addVisual(new Comida(tipo = pastilla))

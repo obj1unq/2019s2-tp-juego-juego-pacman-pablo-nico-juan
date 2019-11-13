@@ -21,6 +21,7 @@ program pacman {
 	
 	// Iniciar Nivel
 	nivel1.iniciar()
+	//config.pasarNivel()
 	
 	
 }

@@ -38,6 +38,11 @@ object pacman{
 	}
 	method sumarPuntos(cantidad){puntos+=cantidad}
 	
+	method moveUp(){game.whenKeyPressedDo(self.position().up(1), {})}
+	method moveDown(){game.whenKeyPressedDo(self.position().down(1), {})}
+	method moveLeft(){game.whenKeyPressedDo(self.position().left(1), {})}
+	method moveRigth(){game.whenKeyPressedDo(self.position().rigth(1), {})}
+	
 	
 		
 	}

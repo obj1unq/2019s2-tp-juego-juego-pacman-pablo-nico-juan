@@ -3,31 +3,43 @@ import niveles.*
 import pacman.*
 import fantasma.*
 
+//CLASE PADRE COMIDA.
+class Comida{
+	const posX = 0.randomUpTo(game.width()-1)
+	const posY = 0.randomUpTo(game.height() -1)
+	const tipo
+	
+	method position() = game.at(posX, posY)
+	
+	method image() = tipo.image()
+	method meEncontroPacman(){ 
+		tipo.meEncontroPacman()
+		game.removeVisual(self)
+		game.sound("pacman-comercereza.mp3")
+	}
+	method puntaje() = tipo.puntaje()
+}
 
-//CLASE FRUTA
-class Fruta {
-	var property position 
-	const property puntaje = 500
+//Object FRUTA
+object fruta {
+	method puntaje() = 500
 	
 	method image() = "fruta.png"
 	
-	method meEncontro(pacman){
-			pacman.sumarPuntos(puntaje)
-			game.removeVisual(self)
-			game.sound("pacman-comercereza.mp3")}
+	method meEncontroPacman(){
+			pacman.sumarPuntos(self.puntaje())
+			}
 	}
 
-//CLASE PASTILLA//
-class Pastilla{
-	var property position
-	const property puntaje = 1000
+//Object PASTILLA//
+object pastilla {
+	method puntaje() = 1000
 	
 	method image() = "pastilla.png"
 	
-	method meEncontro(pacman){
-		pacman.sumarPuntos(puntaje)
+	method meEncontroPacman(){
+		pacman.sumarPuntos(self.puntaje())
 		pacman.pasarAturbo()
-		game.removeVisual(self)
 		game.schedule(3000, {pacman.salirDeTurbo()})
 		
 		

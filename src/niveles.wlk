@@ -4,6 +4,7 @@ import fantasma.*
 import complementos.*
 
 object nivel1 {
+	const siguienteNivel = nivel2
 	
 	method iniciar(){
 	//Fantasmas
@@ -12,38 +13,25 @@ object nivel1 {
 		const verde = new Verde(numero=3)
 		var fantasmas = [azul,rojo,verde]
 		
-	//Frutas
-		const fruta1 = new Fruta(position=game.at(1,4))
-		const fruta2 = new Fruta(position=game.at(3,12))
-		const fruta3 = new Fruta(position=game.at(20,14))
-		const fruta4 = new Fruta(position=game.at(11,10))
-		const fruta5 = new Fruta(position=game.at(18,9))
-		const fruta6 = new Fruta(position=game.at(19,1))	
-		const frutas = [fruta1,fruta2,fruta3,fruta4,fruta5,fruta6]
-	
-	//Pastillas
-		const pastilla1 = new Pastilla (position=game.at(15,13))
-		const pastilla2 = new Pastilla (position=game.at(0,1))
-		const pastillas=[pastilla1,pastilla2]
-	
 		// Configurar fantasmas = Movimiento 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
 				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})
 				}
 		
-		//Configurar Frutas
-		frutas.forEach({fruta => game.addVisual(fruta)})
-		
-		//Configurar Pastillas
-		pastillas.forEach({pastilla => game.addVisual(pastilla)})
-		
 		//Configurar Colisiones
-		game.whenCollideDo(pacman, {fruta => fruta.meEncontro(pacman)})
+		var contador = 0
+		game.addVisual(new Comida(tipo = fruta))
+		game.whenCollideDo(pacman, {comida =>
+			comida.meEncontroPacman()
+			if(pacman.puntos() == 5000) config.pasarAlNivel(siguienteNivel) 
+			contador+=1
+			if(contador % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
+			else game.addVisual(new Comida(tipo = fruta))
+		})
 		game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
-		game.whenCollideDo(pacman, {pastilla =>pastilla.meEncontro(pacman)})
+		
 		
 		//Arranca el juego
-		
 		game.start()
 		}
 			
@@ -52,10 +40,25 @@ object nivel1 {
 
 object nivel2{
 	method iniciar(){
+		const azul = new Rojo(numero=1)
+		const rojo = new Rosa(numero=2)
+		const verde = new Verde(numero=3)
+		const azul2 = new Rojo(numero=1)
+		const rojo2= new Rosa(numero=2)
+		const verde2 = new Verde(numero=3)
+		var fantasmas = [azul,rojo,verde,azul2,rojo2,verde2]
 		
+		fantasmas.forEach {fantasma => game.addVisual(fantasma)
+				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})}
+		
+		//Arrancar nivel2
+		game.start()
 	}
 }
 
+object nivel3{
+	method iniciar(){}
+}
 
 
 
@@ -65,7 +68,7 @@ object config{
 	method finDelJuego(){
 		game.onTick(2000,"Pacman Murio", {game.stop()})
 	}
-	method pasarNivel(){
-		
+	method pasarAlNivel(nivel){
+		nivel.iniciar()	
 	}
 }

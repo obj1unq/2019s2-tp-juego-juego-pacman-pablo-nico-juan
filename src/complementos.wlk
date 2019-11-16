@@ -12,8 +12,8 @@ class Comida{
 	method position() = game.at(posX, posY)
 	
 	method image() = tipo.image()
-	method meEncontroPacman(){ 
-		tipo.meEncontroPacman()
+	method meEncontro(pacman){ 
+		tipo.meEncontro(pacman)
 		game.removeVisual(self)
 		game.sound("pacman-comercereza.mp3")
 	}
@@ -26,7 +26,7 @@ object fruta {
 	
 	method image() = "fruta.png"
 	
-	method meEncontroPacman(){
+	method meEncontro(pacman){
 			pacman.sumarPuntos(self.puntaje())
 			}
 	}
@@ -37,11 +37,9 @@ object pastilla {
 	
 	method image() = "pastilla.png"
 	
-	method meEncontroPacman(){
+	method meEncontro(pacman){
 		pacman.sumarPuntos(self.puntaje())
 		pacman.pasarAturbo()
-		game.schedule(3000, {pacman.salirDeTurbo()})
-		
-		
+		game.schedule(5000, {pacman.salirDeTurbo()})
 	}
 }

@@ -2,34 +2,29 @@ import wollok.game.*
 import pacman.*
 import fantasma.*
 import complementos.*
+import direcciones.*
 
 object nivel1 {
 	const siguienteNivel = nivel2
 	
 	method iniciar(){
-	//Fantasmas
+		//Fantasmas
 		const azul = new Rojo(numero=1)
 		const rojo = new Rosa(numero=2)
 		const verde = new Verde(numero=3)
 		var fantasmas = [azul,rojo,verde]
-		
 		// Configurar fantasmas = Movimiento 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
 				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})
 				}
-		
 		//Configurar Colisiones
 		var contador = 0
 		game.addVisual(new Comida(tipo = fruta))
-		game.whenCollideDo(pacman, {comida =>
-			comida.meEncontroPacman()
+		game.whenCollideDo(pacman, {algo =>	algo.meEncontro(pacman)
 			//Revisar el pasar al nivel ya que agrega mas fantasmas pero no se mueve.
-			if(pacman.puntos() == 5000) config.pasarAlNivel(siguienteNivel) 
-			contador+=1
-			if(contador % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
-			else game.addVisual(new Comida(tipo = fruta))
+			
 		})
-		game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
+		///game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
 		
 		
 		//Arranca el juego
@@ -71,5 +66,17 @@ object config{
 	}
 	method pasarAlNivel(nivel){
 		nivel.iniciar()	
+	}
+	method pasarDeNivel(){
+		if(pacman.puntos() == 5000) config.pasarAlNivel(siguienteNivel) 
+			contador+=1
+		if(contador % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
+		else game.addVisual(new Comida(tipo = fruta))
+	}
+	method configurarTeclas(){
+		keyboard.left().onPressDo({arriba.avanzar()})
+		keyboard.right().onPressDo({pacman.irA(derecha)})
+		keyboard.up().onPressDo({pacman.irA(arriba)})
+		keyboard.down().onPressDo({pacman.irA(abajo)})
 	}
 }

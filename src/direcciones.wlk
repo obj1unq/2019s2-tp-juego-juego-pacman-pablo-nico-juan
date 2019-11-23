@@ -7,7 +7,7 @@ object arriba{
 	
 	
 	method avanzar(){
-	 game.pacman.position().up(1)})
+//	 game.pacman.position().up(1)})
 	}
 }
  

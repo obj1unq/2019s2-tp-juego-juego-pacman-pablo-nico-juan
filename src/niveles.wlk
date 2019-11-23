@@ -5,7 +5,8 @@ import complementos.*
 import direcciones.*
 
 object nivel1 {
-	const siguienteNivel = nivel2
+	const property siguienteNivel = nivel2
+	const property puntosRequeridos = 5000
 	
 	method iniciar(){
 		//Fantasmas
@@ -13,18 +14,30 @@ object nivel1 {
 		const rojo = new Rosa(numero=2)
 		const verde = new Verde(numero=3)
 		var fantasmas = [azul,rojo,verde]
+		
+		
 		// Configurar fantasmas = Movimiento 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
 				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})
 				}
+				
 		//Configurar Colisiones
-		var contador = 0
+		var frutasComidas = 0
 		game.addVisual(new Comida(tipo = fruta))
-		game.whenCollideDo(pacman, {algo =>	algo.meEncontro(pacman)
-			//Revisar el pasar al nivel ya que agrega mas fantasmas pero no se mueve.
-			
+		//Colision con comida
+		game.whenCollideDo(pacman, {comida =>	
+			comida.meEncontroPacman()
+			//if(pacman.puntos() == 5000)	config.pasarNivel(siguienteNivel)
+			frutasComidas++
+			config.siguienteComida(frutasComidas)
 		})
-		///game.whenCollideDo(pacman, {fantasma => fantasma.meEncontro(pacman)})
+		//Colision con fantasma
+		game.whenCollideDo(pacman, {fantasma => 
+			fantasma.meEncontro(pacman)
+			if(pacman.vidas() == 2) game.say(pacman, "Te quedan 2 vidas")
+			else if(pacman.vidas() == 1) game.say(pacman, "Te quedan 1 vidas")
+			else if(pacman.vidas() == 0) game.say(self,"GAME OVER " + pacman.puntos().toString() + " Puntos")
+		})
 		
 		
 		//Arranca el juego
@@ -64,19 +77,19 @@ object config{
 	method finDelJuego(){
 		game.onTick(2000,"Pacman Murio", {game.stop()})
 	}
-	method pasarAlNivel(nivel){
-		nivel.iniciar()	
+	method pasarNivel(nivel){
+		nivel.iniciar()
 	}
-	method pasarDeNivel(){
-		if(pacman.puntos() == 5000) config.pasarAlNivel(siguienteNivel) 
-			contador+=1
-		if(contador % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
-		else game.addVisual(new Comida(tipo = fruta))
-	}
+
 	method configurarTeclas(){
-		keyboard.left().onPressDo({arriba.avanzar()})
-		keyboard.right().onPressDo({pacman.irA(derecha)})
-		keyboard.up().onPressDo({pacman.irA(arriba)})
-		keyboard.down().onPressDo({pacman.irA(abajo)})
+		keyboard.up().onPressDo{pacman.imagen("pacmanUp.png")}
+		keyboard.down().onPressDo{pacman.imagen("pacmanDown.png")}
+		keyboard.right().onPressDo{pacman.imagen("pacmanDer.png")}
+		keyboard.left().onPressDo{pacman.imagen("pacmanIzq.png")}
+		keyboard.enter().onPressDo{game.say(pacman,"puntos: "+ pacman.puntos().toString())}
 	}
+	
+	method siguienteComida(frutasComidas){ 
+			if(frutasComidas % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
+			else game.addVisual(new Comida(tipo = fruta))}
 }

@@ -24,10 +24,9 @@ describe "test pacman"{
 		pacman.restarVida()
 		assert.equals(2,pacman.vidas())
 	}
-	/*test "me comio un fantasma"{
+	test "me comio un fantasma"{
 		pacman.comidoPorFantasma()
 		assert.equals(2,pacman.vidas())
-		assert.equals(10,pacman.position().x())
-		assert.equals(6,pacman.position().y())
-	}*/
+		assert.equals(pacman.position(), pacman.posicionOriginal())
+	}
 }

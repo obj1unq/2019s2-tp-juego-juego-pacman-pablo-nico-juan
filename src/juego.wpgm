@@ -18,7 +18,7 @@ program pacman {
 	// Personaje principal-pacman
 	
 	game.addVisualCharacter(pacman)
-	
+	config.configurarTeclas()
 	// Iniciar Nivel
 	nivel1.iniciar()
 	//config.pasarNivel()

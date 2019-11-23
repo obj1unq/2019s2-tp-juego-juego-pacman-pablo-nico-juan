@@ -12,6 +12,7 @@ object pacman{
 	var property modoTurbo = false 
 	var property puntos = 0
 	var property frutasComidas=0
+	var property imagen = "pacmanUp.png"
 	
 	method posicionOriginal()=game.at(10,6)
 	method pasarAturbo(){modoTurbo = true} //Cuando esta en turbo se puede comer los fantasmas, cambia a turbo cuando se come la pastilla
@@ -19,31 +20,25 @@ object pacman{
 	method restarVida(){vidas -= 1}
 	method comidoPorFantasma(){
 		self.restarVida()
-		if(vidas==2) game.say(self,"Perdiste 1 vida")
-		if(vidas==1) game.say(self,"Te queda 1 vida")
 		self.resetPosicion()
 		if(self.perderJuego()){
-			game.say(self,"GAME OVER " + puntos.toString() + " Puntos")
 			game.sound("pacman-die.mp3")
 			game.schedule(4000, {game.stop()})
 		}
 	}
 	method resetPosicion(){ position = self.posicionOriginal()} //Devuelve a Pacman a su posicion inicial
 	method perderJuego() = vidas == 0
-	method image(){ if(vidas>0) self.sonido()
-		return "pacman.png"}
+	method image(){ 
+		if(vidas>0) self.sonido()
+		return imagen
+		}
 	method sonido(){
 		if(modoTurbo) game.sound("pacman-fantasmas.mp3")
 		else game.sound("pacman-waka.mp3")
 	}
 	method sumarPuntos(cantidad){puntos+=cantidad}
-	/*
-	method moveUp(){game.whenKeyPressedDo(self.position().up(1), {})}
-	method moveDown(){game.whenKeyPressedDo(self.position().down(1), {})}
-	method moveLeft(){game.whenKeyPressedDo(self.position().left(1), {})}
-	method moveRigth(){game.whenKeyPressedDo(self.position().rigth(1), {})}
-	*/
 	
 		
 	}
+
 

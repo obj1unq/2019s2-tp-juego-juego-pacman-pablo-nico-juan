@@ -10,10 +10,10 @@ object nivel1 {
 	
 	method iniciar(){
 		//Fantasmas
-		const azul = new Rojo(numero=1)
-		const rojo = new Rosa(numero=2)
+		const rojo = new Rojo(numero=1)
+		const rosa = new Rosa(numero=2)
 		const verde = new Verde(numero=3)
-		var fantasmas = [azul,rojo,verde]
+		var fantasmas = [rojo,rosa,verde]
 		
 		
 		// Configurar fantasmas = Movimiento 
@@ -26,14 +26,13 @@ object nivel1 {
 		game.addVisual(new Comida(tipo = fruta))
 		//Colision con comida
 		game.whenCollideDo(pacman, {comida =>	
-			comida.meEncontroPacman()
-			//if(pacman.puntos() == 5000)	config.pasarNivel(siguienteNivel)
+			comida.meEncontro(pacman)
+			if(pacman.puntos() == 5000)	config.pasarNivel(siguienteNivel)
 			frutasComidas++
 			config.siguienteComida(frutasComidas)
 		})
 		//Colision con fantasma
-		game.whenCollideDo(pacman, {fantasma => 
-			fantasma.meEncontro(pacman)
+		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
 			if(pacman.vidas() == 2) game.say(pacman, "Te quedan 2 vidas")
 			else if(pacman.vidas() == 1) game.say(pacman, "Te quedan 1 vidas")
 			else if(pacman.vidas() == 0) game.say(self,"GAME OVER " + pacman.puntos().toString() + " Puntos")
@@ -82,11 +81,23 @@ object config{
 	}
 
 	method configurarTeclas(){
-		keyboard.up().onPressDo{pacman.imagen("pacmanUp.png")}
-		keyboard.down().onPressDo{pacman.imagen("pacmanDown.png")}
-		keyboard.right().onPressDo{pacman.imagen("pacmanDer.png")}
-		keyboard.left().onPressDo{pacman.imagen("pacmanIzq.png")}
-		keyboard.enter().onPressDo{game.say(pacman,"puntos: "+ pacman.puntos().toString())}
+		keyboard.up().onPressDo{
+			pacman.imagen("pacmanUp.png")
+			pacman.direccion(arriba)
+		}
+		keyboard.down().onPressDo{
+			pacman.imagen("pacmanDown.png")
+			pacman.direccion(abajo)
+		}
+		keyboard.right().onPressDo{
+			pacman.imagen("pacmanDer.png")
+			pacman.direccion(derecha)
+		}
+		keyboard.left().onPressDo{
+			pacman.imagen("pacmanIzq.png")
+			pacman.direccion(izquierda)
+		}
+		keyboard.enter().onPressDo{game.say(pacman,"puntos: "+ pacman.puntos().toString())}  
 	}
 	
 	method siguienteComida(frutasComidas){ 

@@ -17,9 +17,9 @@ program pacman {
 	
 	// Personaje principal-pacman
 	
-	game.addVisualCharacter(pacman)
-	game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
-	config.configurarTeclas()
+//	game.addVisualCharacter(pacman)
+//	game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
+	
 	
 	// Iniciar Nivel
 	nivel1.iniciar()

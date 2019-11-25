@@ -5,16 +5,18 @@ import complementos.*
 import direcciones.*
 
 object nivel1 {
-	const property siguienteNivel = nivel2
-	const property puntosRequeridos = 5000
+	const siguienteNivel = nivel2
 	
 	method iniciar(){
 		//Fantasmas
-		const rojo = new Rojo(numero=1)
-		const rosa = new Rosa(numero=2)
-		const verde = new Verde(numero=3)
+		const rojo = new Rojo(position = game.at(19,2))
+		const rosa = new Rosa(position = game.at(4,11))
+		const verde = new Verde(position = game.at(5,5))
 		var fantasmas = [rojo,rosa,verde]
-		
+		//Configuraciones de juego
+		config.configurarTeclas()
+		game.addVisualCharacter(pacman)
+		game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
 		
 		// Configurar fantasmas = Movimiento 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
@@ -23,13 +25,17 @@ object nivel1 {
 				
 		//Configurar Colisiones
 		var frutasComidas = 0
-		game.addVisual(new Comida(tipo = fruta))
+		game.addVisual(new Fruta())
 		//Colision con comida
 		game.whenCollideDo(pacman, {comida =>	
 			comida.meEncontro(pacman)
-			if(pacman.puntos() == 5000)	config.pasarNivel(siguienteNivel)
 			frutasComidas++
 			config.siguienteComida(frutasComidas)
+			if(pacman.puntos() >= 1000){
+				game.clear()
+				config.pasarNivel(siguienteNivel)
+				pacman.modoTurbo(false)
+			}
 		})
 		//Colision con fantasma
 		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
@@ -47,20 +53,45 @@ object nivel1 {
 
 
 object nivel2{
+	const siguienteNivel = nivel3
+	
 	method iniciar(){
-		const azul = new Rojo(numero=1)
-		const rojo = new Rosa(numero=2)
-		const verde = new Verde(numero=3)
-		const azul2 = new Rojo(numero=1)
-		const rojo2= new Rosa(numero=2)
-		const verde2 = new Verde(numero=3)
+		const azul = new Rojo(position = game.at(19,2))
+		const rojo = new Rosa(position = game.at(4,11))
+		const verde = new Verde(position = game.at(5,5))
+		const azul2 = new Rojo(position = game.at(6,9))
+		const rojo2= new Rosa(position = game.at(15,7))
+		const verde2 = new Verde(position = game.at(11,1))
 		var fantasmas = [azul,rojo,verde,azul2,rojo2,verde2]
-		
+		//Configuraciones de juego
+		pacman.position(game.center())
+		game.addVisualCharacter(pacman)
+		config.configurarTeclas()
+		game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
+		 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
 				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})}
 		
-		//Arrancar nivel2
-		game.start()
+		var frutasComidas = 0
+		game.addVisual(new Fruta())
+		//Colision con comida
+		game.whenCollideDo(pacman, {comida =>	
+			comida.meEncontro(pacman)
+			if(pacman.puntos() >= 5000){
+				game.clear()
+				config.pasarNivel(siguienteNivel)
+			}
+			frutasComidas++
+			config.siguienteComida(frutasComidas)
+		})
+		 
+		//Colision con fantasma
+		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
+			if(pacman.vidas() == 2) game.say(pacman, "Te quedan 2 vidas")
+			else if(pacman.vidas() == 1) game.say(pacman, "Te quedan 1 vidas")
+			else if(pacman.vidas() == 0) game.say(self,"GAME OVER " + pacman.puntos().toString() + " Puntos")
+		})
+		 
 	}
 }
 
@@ -97,10 +128,12 @@ object config{
 			pacman.imagen("pacmanIzq.png")
 			pacman.direccion(izquierda)
 		}
-		keyboard.enter().onPressDo{game.say(pacman,"puntos: "+ pacman.puntos().toString())}  
+		keyboard.space().onPressDo{game.say(pacman,"puntos: "+ pacman.puntos().toString())}
+		keyboard.v().onPressDo{game.say(pacman,"vidas: " + pacman.vidas().toString())}  
 	}
 	
 	method siguienteComida(frutasComidas){ 
-			if(frutasComidas % 3 == 0) game.addVisual(new Comida(tipo = pastilla))
-			else game.addVisual(new Comida(tipo = fruta))}
+			if(frutasComidas % 3 == 0) game.addVisual(new Pastilla())
+			else game.addVisual(new Fruta())
+			}
 }

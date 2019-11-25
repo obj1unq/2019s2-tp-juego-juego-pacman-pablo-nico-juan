@@ -7,37 +7,37 @@ import fantasma.*
 class Comida{
 	const posX = 0.randomUpTo(game.width()-1)
 	const posY = 0.randomUpTo(game.height() -1)
-	const tipo
 	
 	method position() = game.at(posX, posY)
 	
-	method image() = tipo.image()
+	method image() 
 	method meEncontro(pacman){ 
-		tipo.serComido()
+		self.serComido()
 		game.removeVisual(self)
 		game.sound("pacman-comercereza.mp3")
 	}
-	method puntaje() = tipo.puntaje()
+	method puntaje()
+	method serComido()
 }
 
 //Object FRUTA
-object fruta {
-	method puntaje() = 500
+class Fruta inherits Comida {
+	override method puntaje() = 50
 	
-	method image() = "fruta.png"
+	override method image() = "fruta.png"
 	
-	method serComido(){
+	override method serComido(){
 		pacman.sumarPuntos(self.puntaje())
 	}
 }
 
 //Object PASTILLA//
-object pastilla {
-	method puntaje() = 1000
+class Pastilla inherits Comida {
+	override method puntaje() = 100
 	
-	method image() = "pastilla.png"
+	override method image() = "pastilla.png"
 	
-	method serComido(){
+	override method serComido(){
 		pacman.sumarPuntos(self.puntaje())
 		pacman.pasarAturbo()
 		game.schedule(5000, {pacman.salirDeTurbo()})

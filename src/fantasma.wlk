@@ -4,11 +4,11 @@ import pacman.*
 
 //CLASE FANTASMA
 class Fantasma{
-	const numero
-	const puntaje = 2000
+	var property position
+	const puntaje = 100
 		
-	method image() = if(pacman.modoTurbo()){"fantasmaazul.png"}
-					 else {"fantasma" + numero.toString() + ".png"}
+	method image() = "fantasmaazul.png"
+	
 	method meEncontro(pacman){
 		if(pacman.modoTurbo()){
 			game.removeVisual(self)
@@ -28,9 +28,9 @@ class Fantasma{
 
 //SE MUEVE POR EL TABLERO 
 class Rosa inherits Fantasma{
+	var numero = 1
 	
-	var property position = self.posicionOriginal()
-	
+	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(20,0)
 	
@@ -50,9 +50,9 @@ class Rosa inherits Fantasma{
 }
 //SIGUE A PACMAN
 class Rojo inherits Fantasma{
+	var numero = 2
 	
-	var property position = self.posicionOriginal()
-	
+	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(15,11)
 	
@@ -73,9 +73,9 @@ class Rojo inherits Fantasma{
 }
 //OTRO MOVIMIENTO PERSIGUE A PACMAN CUANDO TIENE 1000 PUNTOS
 class Verde inherits Fantasma{
+	var numero = 3
 	
-	var property position = self.posicionOriginal()
-	
+	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(5,5)
 	
@@ -109,8 +109,9 @@ class Verde inherits Fantasma{
 	
 //OTRO MOVIMIENTO
 class Amarillo inherits Fantasma{
-	var property position = self.posicionOriginal()
+	var numero = 4
 	
+	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(7,9)
 	

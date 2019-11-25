@@ -6,8 +6,7 @@ import direcciones.*
 
 describe "test pacman"{
 	test "test posicion" {
-		assert.equals(10, pacman.position().x())
-		assert.equals(6, pacman.position().y())
+		assert.equals(game.center(), pacman.position())
 	}
 	test "test vidas"{
 		assert.equals(3, pacman.vidas())
@@ -27,6 +26,6 @@ describe "test pacman"{
 	test "me comio un fantasma"{
 		pacman.comidoPorFantasma()
 		assert.equals(2,pacman.vidas())
-		assert.equals(pacman.position(), pacman.posicionOriginal())
+		assert.equals(pacman.position(), game.center())
 	}
 }

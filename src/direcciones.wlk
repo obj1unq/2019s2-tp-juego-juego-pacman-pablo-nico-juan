@@ -10,13 +10,13 @@ class Direcciones{
 
 object arriba inherits Direcciones{
 	
-	method estaEnElBorde() = (pacman.position().y() == 21)
+	method estaEnElBorde() = (pacman.position().y() == 11)
 	
 	method avanzar(pacman) = if (self.estaDentroDelJuego() or not self.estaEnElBorde()) pacman.position().up(1) else pacman.position().up(0)
 	
 }
 object derecha inherits Direcciones{
-	method estaEnElBorde() = (pacman.position().x() == 12)
+	method estaEnElBorde() = (pacman.position().x() == 19)
 		
 	method avanzar(pacman) = if (self.estaDentroDelJuego() or not self.estaEnElBorde()) pacman.position().right(1) else pacman.position().right(0)
 }

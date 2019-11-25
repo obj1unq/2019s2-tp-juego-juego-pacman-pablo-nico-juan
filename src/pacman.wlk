@@ -38,7 +38,9 @@ object pacman{
 		else game.sound("pacman-waka.mp3")
 	}
 	method sumarPuntos(cantidad){puntos += cantidad}
-	method moverse(){ position = direccion.avanzar(self) }	
+	method moverse(){ position = direccion.avanzar(self)
+								
+	}	
 } 
 
 

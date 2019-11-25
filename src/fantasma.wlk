@@ -27,8 +27,8 @@ class Fantasma{
 }
 
 //SE MUEVE POR EL TABLERO 
-class Rosa inherits Fantasma{
-	var numero = 1
+class Pinky inherits Fantasma{
+	var numero = 2
 	
 	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
@@ -49,8 +49,8 @@ class Rosa inherits Fantasma{
 		}
 }
 //SIGUE A PACMAN
-class Rojo inherits Fantasma{
-	var numero = 2
+class Blinky inherits Fantasma{
+	var numero = 1
 	
 	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
@@ -71,9 +71,9 @@ class Rojo inherits Fantasma{
 	}
 		
 }
-//OTRO MOVIMIENTO PERSIGUE A PACMAN CUANDO TIENE 1000 PUNTOS
-class Verde inherits Fantasma{
-	var numero = 3
+//PERSIGUE A PACMAN CUANDO TIENE MAS DE 2000 PUNTOS
+class Inky inherits Fantasma{
+	var numero = 4
 	
 	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
@@ -84,7 +84,7 @@ class Verde inherits Fantasma{
 	
 	method moverse(){
 		
-		if(pacman.puntos()<1000){
+		if(pacman.puntos()<3000){
 				var newX = position.x() + if(0.randomUpTo(4)>=2){1}else{-1}
 				var newY = position.y() + if(0.randomUpTo(4)>=2){1}else{-1}
 				// evitamos que se posicionen fuera del tablero
@@ -107,9 +107,9 @@ class Verde inherits Fantasma{
 	
 	}
 	
-//OTRO MOVIMIENTO
-class Amarillo inherits Fantasma{
-	var numero = 4
+//APARECE POR EL TABLERO EN DIFERENTES POSICIONES
+class Clyde inherits Fantasma{
+	var numero = 3
 	
 	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
 	
@@ -120,12 +120,10 @@ class Amarillo inherits Fantasma{
 	
 	method moverse(){
 		
-		var otroPosicion = pacman.position()
-		var newX = position.x() + if (otroPosicion.x() > position.x()) 1 else -1
-		var newY = position.y() + if (otroPosicion.y() > position.y()) 1 else -1
-		// evitamos que se posicionen fuera del tablero
-		newX = newX.max(0).min(game.width() - 1)
-		newY = newY.max(0).min(game.height() - 1)
+		
+		var newX = 0.randomUpTo(game.width()-1)
+		var newY = 0.randomUpTo(game.width()-1)
+		
 		position = game.at(newX, newY)
 	}
 }

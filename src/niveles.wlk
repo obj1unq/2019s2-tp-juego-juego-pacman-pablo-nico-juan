@@ -9,14 +9,14 @@ object nivel1 {
 	
 	method iniciar(){
 		//Fantasmas
-		const rojo = new Rojo(position = game.at(19,2))
-		const rosa = new Rosa(position = game.at(4,11))
-		const verde = new Verde(position = game.at(5,5))
+		const rojo = new Pinky(position = game.at(19,2))
+		const rosa = new Pinky(position = game.at(4,11))
+		const verde = new Pinky(position = game.at(5,5))
 		var fantasmas = [rojo,rosa,verde]
 		//Configuraciones de juego
 		config.configurarTeclas()
 		game.addVisualCharacter(pacman)
-		game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
+		game.onTick(200,"Movimiento de Pacman",{if(pacman.vidas()>0)pacman.moverse()})
 		
 		// Configurar fantasmas = Movimiento 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
@@ -31,13 +31,11 @@ object nivel1 {
 			comida.meEncontro(pacman)
 			frutasComidas++
 			if(frutasComidas % 3 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
-			config.pasarDeNivel(siguienteNivel, 1000)
+			config.pasarDeNivel(siguienteNivel, 1500)
 		})
 		//Colision con fantasma
 		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
-			if(pacman.vidas() == 2) game.say(pacman, "Te quedan 2 vidas")
-			else if(pacman.vidas() == 1) game.say(pacman, "Te quedan 1 vidas")
-			else if(pacman.vidas() == 0) game.say(self,"GAME OVER " + pacman.puntos().toString() + " Puntos")
+			
 		})
 		
 		
@@ -52,18 +50,18 @@ object nivel2{
 	const siguienteNivel = nivel3
 	
 	method iniciar(){
-		const azul = new Rojo(position = game.at(19,2))
-		const rojo = new Rosa(position = game.at(4,11))
-		const verde = new Verde(position = game.at(5,5))
-		const azul2 = new Rojo(position = game.at(6,9))
-		const rojo2= new Rosa(position = game.at(15,7))
-		const verde2 = new Verde(position = game.at(11,1))
+		const azul = new Pinky(position = game.at(19,2))
+		const rojo = new Pinky(position = game.at(4,11))
+		const verde = new Inky(position = game.at(5,5))
+		const azul2 = new Inky(position = game.at(6,9))
+		const rojo2= new Clyde(position = game.at(15,7))
+		const verde2 = new Blinky(position = game.at(11,1))
 		var fantasmas = [azul,rojo,verde,azul2,rojo2,verde2]
 		//Configuraciones de juego
 		pacman.position(game.center())
 		game.addVisualCharacter(pacman)
 		config.configurarTeclas()
-		game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
+		game.onTick(200,"Movimiento de Pacman",{if(pacman.vidas()>0)pacman.moverse()})
 		 
 		fantasmas.forEach {fantasma => game.addVisual(fantasma)
 				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})}
@@ -75,14 +73,12 @@ object nivel2{
 			comida.meEncontro(pacman)
 			frutasComidas++
 			if(frutasComidas % 5 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
-			config.pasarDeNivel(siguienteNivel, 5000)
+			config.pasarDeNivel(siguienteNivel, 2900)
 		})
 		 
 		//Colision con fantasma
 		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
-			if(pacman.vidas() == 2) game.say(pacman, "Te quedan 2 vidas")
-			else if(pacman.vidas() == 1) game.say(pacman, "Te quedan 1 vidas")
-			else if(pacman.vidas() == 0) game.say(self,"GAME OVER " + pacman.puntos().toString() + " Puntos")
+			
 		})
 		 
 	}
@@ -90,21 +86,23 @@ object nivel2{
 
 object nivel3{
 	method iniciar(){
-		const azul = new Rojo(position = game.at(19,2))
-		const rojo = new Rosa(position = game.at(4,11))
-		const verde = new Verde(position = game.at(5,5))
-		const azul2 = new Rojo(position = game.at(6,9))
-		const rojo2= new Rosa(position = game.at(15,7))
-		const verde2 = new Verde(position = game.at(11,1))
-		const azul3 = new Rojo(position = game.at(11,1))
-		const rojo3 = new Rosa(position = game.at(14,10))
-		const verde3 = new Verde(position = game.at(9,3))
-		var fantasmas = [azul, rojo, verde, azul2, rojo2, verde2, azul3, rojo3, verde3]
 		
-		fantasmas.forEach{fantasma => 
-			game.addVisual(fantasma)
-			game.onTick(1000, "movimiento", {if(pacman.vidas()>0) fantasma.moverse()})
-		}
+		const azul = new Blinky(position = game.at(19,2))
+		const rojo = new Blinky(position = game.at(4,11))
+		const verde = new Inky(position = game.at(5,5))
+		const azul2 = new Inky(position = game.at(6,9))
+		const rojo2= new Pinky(position = game.at(15,7))
+		const verde2 = new Clyde(position = game.at(11,1))
+		var fantasmas = [azul,rojo,verde,azul2,rojo2,verde2]
+		//Configuraciones de juego
+		pacman.position(game.center())
+		game.addVisualCharacter(pacman)
+		config.configurarTeclas()
+		game.onTick(200,"Movimiento de Pacman",{if(pacman.vidas()>0)pacman.moverse()})
+		 
+		fantasmas.forEach {fantasma => game.addVisual(fantasma)
+				game.onTick( 1000, "movimiento", {if(pacman.vidas()>0)fantasma.moverse()})}
+		
 		var frutasComidas = 0
 		game.addVisual(new Fruta())
 		//Colision con comida
@@ -112,10 +110,18 @@ object nivel3{
 			comida.meEncontro(pacman)
 			frutasComidas++
 			if(frutasComidas % 10 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
-			if(pacman.puntos() >= 10000){
+			if(pacman.puntos() >= 3500){
 				game.say(pacman, "ganaste")
+				finDelJuego.iniciar()
+				
 			}
 		})
+		 
+		//Colision con fantasma
+		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
+			
+		})
+		 
 	}
 }
 
@@ -131,8 +137,9 @@ object config{
 	method pasarDeNivel(nivel, puntosRequeridos){
 		if(pacman.puntos() >= puntosRequeridos){
 				game.clear()
+				game.sound("pacman-intro.mp3")
 				pacman.modoTurbo(false)
-				nivel.iniciar()
+				game.onTick(4500, "pasar de nivel", {nivel.iniciar()})
 			}
 	}
 
@@ -157,4 +164,16 @@ object config{
 		keyboard.v().onPressDo{game.say(pacman,"vidas: " + pacman.vidas().toString())}  
 	}
 	
+}
+
+object finDelJuego{
+	method image()="win.png"
+	
+	method position()=game.at(3,1)
+	
+	method iniciar(){
+		game.clear()
+		game.addVisual(self)
+		game.onTick(4000,"ganar",{game.stop()})
+	}
 }

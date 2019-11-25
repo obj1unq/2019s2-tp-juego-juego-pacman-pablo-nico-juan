@@ -15,15 +15,12 @@ program pacman {
 	// Fondo
 	game.boardGround("fondopacman.jpg")
 	
-	// Personaje principal-pacman
 	
-//	game.addVisualCharacter(pacman)
-//	game.onTick(200,"Movimiento de Pacman",{pacman.moverse()})
 	
 	
 	// Iniciar Nivel
 	nivel1.iniciar()
-	//config.pasarNivel()
+	
 	
 	
 }

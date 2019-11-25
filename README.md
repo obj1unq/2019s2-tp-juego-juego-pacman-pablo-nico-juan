@@ -8,25 +8,37 @@ Integrantes:
 
 - 
 - Bernasconi Pablo
-- Sanchez Juan Cruz
+- Sanchez Juan Cruz 
+- Nicolás Gustavo Martin
 
 
-#### Descripción e instrucciones
+"WOLLAKMAN"
 
-## Descripcion
-La idea con este juego es hacer un Pacman:
+El juego consta de 3 niveles , cada uno con dificultades diferentes , a medida que los jugadores avanzen en los niveles , apareceran fantasmas con diferentes movimientos.
 
-Este Pacman no tendra el clasico laberinto, sino que la pantalla estara libre, Pacman podra moverse por toda la superficie y tendra los corredores para pasar de un lado de la pantalla y salir por el lado opuesto.
+-Hay 4 tipos de Fantasmas-
 
-El objetivo es que Pacman, coma una cierta cantidad de fruta por nivel sin ser atrapado por los fantasmas, estos mismos, tendran la ventaja de moverse mas rápido que Pacman cada vez que esté coma una fruta.
+Pinky: Se mueve por el tablero.
 
-Cada Fantasmita tendra movimientos personalizados con los que intentaran atraparlo.
-Solo cuando Pacman coma la pastilla, y los fantasmas se pongan azules, se los podra comer. 
+Inky : Se mueve por el tablero hasta que PACMAN consigue 2000 o mas puntos . Automaticamente empieza a seguirlo
 
-## Etapas
+Clyde: Aparece y desaparece por el tablero en posiciones random.
 
-1-Lograr los movimientos del Pacman
+Blinky: Sigue a pacman hasta matarlo.
 
-2-Personalizar movimientos de los fantasmas 
- 
+-Comidas-
 
+Fruta: Da un puntaje de 50 puntos
+
+Pastilla : Da un puntaje de 100 puntos.
+
+En este Pacman las comidas no se encuentran en el tablero , sino hay que conseguirlas. Como? Facil , comer alguna comida o fantasmas hace que respawneen en el tablero.
+
+
+Como ganar el juego? Tratando de ganarle a los fantasmas en el nivel 3
+
+COMO JUGAR?
+
+Movimiento: Con las flechas del teclado
+Vidas : Pulsando la tecla V podes ver las vidas que te quedan
+Score: Pulsando la tecla ESPACIO podes ver tu score actualmente

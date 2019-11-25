@@ -3,25 +3,34 @@ import pacman.*
 import fantasma.*
 import complementos.*
 
-object arriba{
-	const property dirOpuesta = abajo
+class Direcciones{
 	
-	method avanzar(pacman) = if(game.height() < 12 && game.height() > 0) pacman.position().up(1) else pacman.position().up(0)
+	method estaDentroDelJuego()= (game.height() < 12 and game.height() > 0) or (game.width() < 20 and game.width() > 0)
+}
+
+object arriba inherits Direcciones{
+	
+	method estaEnElBorde() = (pacman.position().y() == 21)
+	
+	method avanzar(pacman) = if (self.estaDentroDelJuego() or not self.estaEnElBorde()) pacman.position().up(1) else pacman.position().up(0)
 	
 }
-object derecha{
-	const property dirOpuesta = izquierda
-	
-	method avanzar(pacman) = if(game.width() < 20 && game.width() > 0) pacman.position().right(1) else pacman.position().right(0)
+object derecha inherits Direcciones{
+	method estaEnElBorde() = (pacman.position().x() == 12)
+		
+	method avanzar(pacman) = if (self.estaDentroDelJuego() or not self.estaEnElBorde()) pacman.position().right(1) else pacman.position().right(0)
 }
-object abajo{
-	const property dirOpuesta = arriba
+object abajo inherits Direcciones{
 	
-	method avanzar(pacman)= if(game.height() < 12 && game.height() > 0) pacman.position().down(1) else pacman.position().down(0)
+	method estaEnElBorde() = (pacman.position().y() == 0)
+		
+	method avanzar(pacman)= if(self.estaDentroDelJuego() or not self.estaEnElBorde()) pacman.position().down(1) else pacman.position().down(0)
 
 }
-object izquierda{
-	const property dirOpuesta = derecha
+object izquierda inherits Direcciones{
 	
-	method avanzar(pacman) =  if(game.width() < 20 && game.width() > 0) pacman.position().left(1) else pacman.position().down(0)
+	method estaEnElBorde() = (pacman.position().x() == 0)
+	
+	method avanzar(pacman) =  if(self.estaDentroDelJuego() or not self.estaEnElBorde()) 
+		pacman.position().left(1) else pacman.position().left(0)
 } 

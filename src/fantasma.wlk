@@ -39,8 +39,8 @@ class Rosa inherits Fantasma{
 	
 	method moverse(){
 		
-				var newX = self.position().x() + if(0.randomUpTo(4)>=2){1}else{-1}
-				var newY = self.position().y() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newX = position.x() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newY = position.y() + if(0.randomUpTo(4)>=2){1}else{-1}
 				// evitamos que se posicionen fuera del tablero
 				newX = newX.max(0).min(game.width() - 1)
 				newY = newY.max(0).min(game.height() - 1)
@@ -62,8 +62,8 @@ class Rojo inherits Fantasma{
 	method moverse(){
 		
 		var otroPosicion = pacman.position()
-		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
-		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		var newX = position.x() + if (otroPosicion.x() > position.x()) 1 else -1
+		var newY = position.y() + if (otroPosicion.y() > position.y()) 1 else -1
 		// evitamos que se posicionen fuera del tablero
 		newX = newX.max(0).min(game.width() - 1)
 		newY = newY.max(0).min(game.height() - 1)
@@ -85,8 +85,8 @@ class Verde inherits Fantasma{
 	method moverse(){
 		
 		if(pacman.puntos()<1000){
-				var newX = self.position().x() + if(0.randomUpTo(4)>=2){1}else{-1}
-				var newY = self.position().y() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newX = position.x() + if(0.randomUpTo(4)>=2){1}else{-1}
+				var newY = position.y() + if(0.randomUpTo(4)>=2){1}else{-1}
 				// evitamos que se posicionen fuera del tablero
 				newX = newX.max(0).min(game.width() - 1)
 				newY = newY.max(0).min(game.height() - 1)
@@ -94,8 +94,8 @@ class Verde inherits Fantasma{
 		}
 		else{
 			var otroPosicion = pacman.position()
-			var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
-			var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+			var newX = position.x() + if (otroPosicion.x() > position.x()) 1 else -1
+			var newY = position.y() + if (otroPosicion.y() > position.y()) 1 else -1
 			// evitamos que se posicionen fuera del tablero
 			newX = newX.max(0).min(game.width() - 1)
 			newY = newY.max(0).min(game.height() - 1)
@@ -121,8 +121,8 @@ class Amarillo inherits Fantasma{
 	method moverse(){
 		
 		var otroPosicion = pacman.position()
-		var newX = self.position().x() + if (otroPosicion.x() > self.position().x()) 1 else -1
-		var newY = self.position().y() + if (otroPosicion.y() > self.position().y()) 1 else -1
+		var newX = position.x() + if (otroPosicion.x() > position.x()) 1 else -1
+		var newY = position.y() + if (otroPosicion.y() > position.y()) 1 else -1
 		// evitamos que se posicionen fuera del tablero
 		newX = newX.max(0).min(game.width() - 1)
 		newY = newY.max(0).min(game.height() - 1)

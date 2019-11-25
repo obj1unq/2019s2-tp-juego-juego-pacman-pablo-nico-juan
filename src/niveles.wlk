@@ -30,12 +30,8 @@ object nivel1 {
 		game.whenCollideDo(pacman, {comida =>	
 			comida.meEncontro(pacman)
 			frutasComidas++
-			config.siguienteComida(frutasComidas)
-			if(pacman.puntos() >= 1000){
-				game.clear()
-				config.pasarNivel(siguienteNivel)
-				pacman.modoTurbo(false)
-			}
+			if(frutasComidas % 3 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
+			config.pasarDeNivel(siguienteNivel, 1000)
 		})
 		//Colision con fantasma
 		game.whenCollideDo(pacman, {fantasma =>	fantasma.meEncontro(pacman)
@@ -77,12 +73,9 @@ object nivel2{
 		//Colision con comida
 		game.whenCollideDo(pacman, {comida =>	
 			comida.meEncontro(pacman)
-			if(pacman.puntos() >= 5000){
-				game.clear()
-				config.pasarNivel(siguienteNivel)
-			}
 			frutasComidas++
-			config.siguienteComida(frutasComidas)
+			if(frutasComidas % 5 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
+			config.pasarDeNivel(siguienteNivel, 5000)
 		})
 		 
 		//Colision con fantasma
@@ -96,7 +89,34 @@ object nivel2{
 }
 
 object nivel3{
-	method iniciar(){}
+	method iniciar(){
+		const azul = new Rojo(position = game.at(19,2))
+		const rojo = new Rosa(position = game.at(4,11))
+		const verde = new Verde(position = game.at(5,5))
+		const azul2 = new Rojo(position = game.at(6,9))
+		const rojo2= new Rosa(position = game.at(15,7))
+		const verde2 = new Verde(position = game.at(11,1))
+		const azul3 = new Rojo(position = game.at(11,1))
+		const rojo3 = new Rosa(position = game.at(14,10))
+		const verde3 = new Verde(position = game.at(9,3))
+		var fantasmas = [azul, rojo, verde, azul2, rojo2, verde2, azul3, rojo3, verde3]
+		
+		fantasmas.forEach{fantasma => 
+			game.addVisual(fantasma)
+			game.onTick(1000, "movimiento", {if(pacman.vidas()>0) fantasma.moverse()})
+		}
+		var frutasComidas = 0
+		game.addVisual(new Fruta())
+		//Colision con comida
+		game.whenCollideDo(pacman, {comida =>	
+			comida.meEncontro(pacman)
+			frutasComidas++
+			if(frutasComidas % 10 == 0) game.addVisual(new Pastilla()) else game.addVisual(new Fruta())
+			if(pacman.puntos() >= 10000){
+				game.say(pacman, "ganaste")
+			}
+		})
+	}
 }
 
 
@@ -107,8 +127,13 @@ object config{
 	method finDelJuego(){
 		game.onTick(2000,"Pacman Murio", {game.stop()})
 	}
-	method pasarNivel(nivel){
-		nivel.iniciar()
+	
+	method pasarDeNivel(nivel, puntosRequeridos){
+		if(pacman.puntos() >= puntosRequeridos){
+				game.clear()
+				pacman.modoTurbo(false)
+				nivel.iniciar()
+			}
 	}
 
 	method configurarTeclas(){
@@ -132,8 +157,4 @@ object config{
 		keyboard.v().onPressDo{game.say(pacman,"vidas: " + pacman.vidas().toString())}  
 	}
 	
-	method siguienteComida(frutasComidas){ 
-			if(frutasComidas % 3 == 0) game.addVisual(new Pastilla())
-			else game.addVisual(new Fruta())
-			}
 }

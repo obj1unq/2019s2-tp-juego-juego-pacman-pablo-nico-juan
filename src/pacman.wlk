@@ -12,6 +12,7 @@ object pacman{
 	var property modoTurbo = false 
 	var property puntos = 0
 	var property frutasComidas=0
+	//TODO: OJO con precalcular. La imagen depende de la dirección, por lo tanto la podríamos calcular en el momento
 	var property imagen = "pacmanUp.png"
 	var property direccion = arriba // Es la direccion a la que se mueve pacman 
 	

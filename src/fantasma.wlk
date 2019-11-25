@@ -7,7 +7,9 @@ class Fantasma{
 	var property position
 	const puntaje = 100
 		
-	method image() = "fantasmaazul.png"
+	method image() = if(pacman.modoTurbo()) "fantasmaazul.png" else self.imagenPropia()
+		
+	method imagenPropia()
 	
 	method meEncontro(pacman){
 		if(pacman.modoTurbo()){
@@ -18,6 +20,7 @@ class Fantasma{
 			game.schedule(1500, {game.addVisual(self)})
 		}
 		else{
+			//TODO: Delegar en el pacman
 		pacman.comidoPorFantasma()
 		if(pacman.vidas()==0)
 		config.finDelJuego()		
@@ -30,7 +33,7 @@ class Fantasma{
 class Pinky inherits Fantasma{
 	var numero = 2
 	
-	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
+	override method imagenPropia() = "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(20,0)
 	
@@ -52,7 +55,7 @@ class Pinky inherits Fantasma{
 class Blinky inherits Fantasma{
 	var numero = 1
 	
-	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
+	override method imagenPropia() = "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(15,11)
 	
@@ -75,7 +78,7 @@ class Blinky inherits Fantasma{
 class Inky inherits Fantasma{
 	var numero = 4
 	
-	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
+	override method imagenPropia() = "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(5,5)
 	
@@ -111,7 +114,7 @@ class Inky inherits Fantasma{
 class Clyde inherits Fantasma{
 	var numero = 3
 	
-	override method image() = if(pacman.modoTurbo()) super() else "fantasma" + numero.toString() + ".png"
+	override method imagenPropia() = "fantasma" + numero.toString() + ".png"
 	
 	method posicionOriginal() = game.at(7,9)
 	
